@@ -1,7 +1,7 @@
 import { getFutures } from 'features/dashboard/api/getFutures';
 import styles from './styles.module.css';
 import { useEffect } from 'react';
-import DashboardTicker from '../DashboardTicker/DashboardTicker';
+import DashboardTicker from '../DashboardTickerOut/DashboardTickerOut';
 
 const DashboardTop = () => {
     useEffect(() => {

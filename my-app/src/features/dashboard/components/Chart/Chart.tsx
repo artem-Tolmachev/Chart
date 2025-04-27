@@ -7,17 +7,21 @@ import styles from './styles.module.css';
 
 function Chart(){
     const chart = useRef<HTMLDivElement | null>(null);
+
     const [chartSettings, setChartSettings] = useState<InitiaLChartSettings>({
         interval: '60',
         symbol: 'BTCUSDT',
         limit: '100',
         category: 'inverse',
     });
+
     const { data, volume } = useKlines(chartSettings);
+
+    const memoizedData = React.useMemo(() => data, [JSON.stringify(data)]);
+    const memoizedVolume = React.useMemo(() => volume, [JSON.stringify(volume)]);
 
     useEffect(() => {
         if (!chart.current) return;
-
         const chartOptions = { layout: { textColor: 'black', background: { type: ColorType.Solid, color: 'white', fontSize: 20 }}};
 
         const Chart = createChart(chart.current, chartOptions);
@@ -44,7 +48,7 @@ function Chart(){
             Chart.remove()
         }
         
-    }, [data, volume])
+    }, [memoizedData, memoizedVolume])
 
     function TimeframeHandler(e: React.MouseEvent<HTMLButtonElement>){
         const time = (e.target as HTMLElement).dataset.interval
