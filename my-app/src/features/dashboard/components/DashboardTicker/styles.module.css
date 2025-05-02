@@ -1,0 +1,30 @@
+.item {
+    display: flex;
+    padding: 8px 0px;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px var(--color-active);
+    cursor: pointer;
+    
+    &:hover{
+        background-color: var(--color-active);
+    }
+}
+.element{
+    margin-left: 20px;
+    max-width: 100%;
+    min-width: 0;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 120px;
+    overflow: hidden;
+}
+.price{
+    color: var(--color-blue);
+}
+.volume{
+    color: var(--color-perple)
+}
+.turnover{
+    color: var(--color-green)
+}

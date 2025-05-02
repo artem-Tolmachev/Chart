@@ -1,3 +1,4 @@
+import { formatNumber } from 'features/dashboard/utilse/formatData';
 import styles from './styles.module.css';
 
 interface Props {
@@ -9,12 +10,20 @@ interface Props {
 
 const DashboardTicker = ({name, price, volume, turnover}: Props) => {
     return(
-        <li className={styles.list}>
-            <span>{name}</span>
-            <span>{price}</span>
-            <span>{volume}</span>
-            <span>{turnover}</span>
-        </li>
+        <div className={styles.item}>
+            <div className={styles.element}>
+                <div>{name}</div>
+            </div>
+            <div className={styles.element}>
+                <div className={styles.price}>{formatNumber(price)}</div>
+            </div>
+            <div className={styles.element}>
+                <div className={styles.volume}>{formatNumber(volume)}</div>
+            </div>
+            <div className={styles.element}>
+                <div className={styles.turnover}>{formatNumber(turnover)}</div>
+            </div>
+        </div>
     )
 }
 export default DashboardTicker;

@@ -3,7 +3,6 @@ import DashboardPage from "../../features/dashboard/DashboardPage/DashboardPage"
 import styles from './styles.module.css';
 
 function Main(){
-
     return(
         <>
             <div className={styles.main}>

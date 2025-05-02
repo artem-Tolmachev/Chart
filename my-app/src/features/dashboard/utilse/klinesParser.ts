@@ -17,11 +17,11 @@ export const dataValumeParser = (list: KlineTupleValume[]) =>
     color: +open > +close ? '#ef5350' : '#26a69a',
   }));
 
-  export const tickerParser = (list: MarketData[]) => 
-    list.map(({turnover24h, volume24h, symbol, lastPrice}) => ({
-      turnover24h: +turnover24h,
-      volume24h: +volume24h,
-      symbol: symbol,
-      lastPrice: +lastPrice
-    }));
+export const tickerParser = (list: MarketData[]) => 
+  list.map(({turnover24h, volume24h, symbol, lastPrice}) => ({
+    turnover24h: +turnover24h,
+    volume24h: +volume24h / 100 ,
+    symbol: symbol,
+    lastPrice: +lastPrice
+  }));
   
