@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {tickerParser} from '../utilse/klinesParser';
+import {tickerParser} from '../utilse/Parser';
 import { MarketData } from '../../../types/index';
 
 export const getFutures = async (

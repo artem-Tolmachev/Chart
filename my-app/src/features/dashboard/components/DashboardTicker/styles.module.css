@@ -3,7 +3,7 @@
     padding: 8px 0px;
     justify-content: space-between;
     align-items: center;
-    border: solid 1px var(--color-active);
+    border-bottom: solid 1px var(--color-active);
     cursor: pointer;
     
     &:hover{
@@ -16,7 +16,7 @@
     min-width: 0;
     flex-grow: 1;
     flex-shrink: 0;
-    flex-basis: 120px;
+    flex-basis: 80px;
     overflow: hidden;
 }
 .price{

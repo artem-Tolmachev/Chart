@@ -69,3 +69,10 @@ export type KlineTupleValume = [
   any,           
   number | string  
 ];
+
+export interface IDashboardHeaderItems {
+    key: string;
+    lable: string;
+    visible: number;
+}
+
