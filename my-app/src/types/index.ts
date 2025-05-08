@@ -34,7 +34,7 @@ interface ICoinsData {
 // lastPrice	✅	Текущая (последняя) цена.
 // price24hPcnt	✅	Изменение за 24ч в процентах (%).
 // volume24h	✅	Объём торгов за 24ч (иногда turnover вместо volume).
-export type MarketData = Pick<ICoinsData, "turnover24h" | "volume24h" | "symbol" | "lastPrice">;
+export type MarketData = Pick<ICoinsData, "turnover24h" | "volume24h" | "symbol" | "lastPrice"> & {src: string};
 
 export type InitiaLChartSettings = {
     interval: string | undefined;
@@ -72,7 +72,7 @@ export type KlineTupleValume = [
 
 export interface IDashboardHeaderItems {
     key: string;
-    lable: string;
+    label: string;
     visible: number;
 }
 

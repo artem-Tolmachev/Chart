@@ -8,18 +8,16 @@ import DashboardHeader from '../DashboardHeader/DashboardHeader';
 const DashboardTickerOut = () => {
     const [tickers, setTickers] = useState<MarketData[]>([]);
 
-    // useEffect(() => {
-    //     const fetch = async () => {
-    //         let tickers = await getFutures()
-    //         setTickers(tickers)
-    //     }
-    //     fetch()
-    // }, [])
+    useEffect(() => {
+        const fetch = async () => {
+            let tickers = await getFutures()
+            setTickers(tickers)
+        }
+        fetch()
+    }, [])
 
     return (
         <div className={styles.tickers_list}>
-            <DashboardHeader/>
-
             {
                 tickers.map((ticker, index) => (
                     <DashboardTicker

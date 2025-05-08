@@ -16,7 +16,6 @@
   height: 100%;
   align-items: end;
 }
-
 .item{
   margin-left: 20px;
   max-width: 100%;
@@ -28,10 +27,11 @@
   overflow: hidden;
 }
 .filter{
+  width: 40px;
+  height: 40px;
   cursor: pointer;
 }
-
-.header{
-  font-size: 11px;
-  color: var(--color-text-secondary)
+.filter svg{
+  width: 100%;
+  height: 100%;
 }

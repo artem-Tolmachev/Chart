@@ -1,9 +1,0 @@
-.container{
-    position: absolute;
-    width: 200px;
-    height: 300px;
-    top: 50px;
-    right: 20px;
-    background-color: var(--color-panel);
-    border-radius: var(--border-block);
-}
