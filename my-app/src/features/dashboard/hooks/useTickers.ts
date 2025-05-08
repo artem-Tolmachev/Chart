@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { MarketData } from "types";
 import { getFutures } from "../api/getFutures";
-
 export const useTickers = () => {
     const [tickers, setTickers] = useState<MarketData[]>([]);
     useEffect(() => {
