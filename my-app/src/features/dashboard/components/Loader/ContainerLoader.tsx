@@ -15,7 +15,7 @@ const ContainerLoader = ({ data, index, style }:
 ) => {
   const item = data.items[index];
   const isLoaded = data.itemStatusMap[index] === data.LOADED;
-
+  
   return (
     <div style={{ ...style, alignItems: 'center'}}>
         {isLoaded && item ? (
