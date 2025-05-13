@@ -1,21 +1,23 @@
 import styles from './styles.module.css';
 import { useState } from 'react';
-import Popup from 'shared/components/Popup/Popup';
+// import Popup from 'shared/components/Popup/Popup';
 import { IDashboardHeaderItems } from 'types';
 import DashboarButtons from '../DashboarButtons/DashboarButtons';
 import CustomCheckbox from 'shared/components/CustomCheckbox/CustomCheckbox';
+import PopupSettings from '../PopupSettings/PopupSettings';
 
 interface Props {
-    isOpen: null | 'settings' | 'add';
-    onClose: (type: null | 'settings' | 'add') => void;
+    isOpen: boolean | string;
+    onToggleModal: (arg: boolean | string)  => void;
 }
 
-const DashboardHeader = ({isOpen, onClose}: Props) => {
+const DashboardHeader = ({isOpen, onToggleModal}: Props) => {
     const [columns, setColumns] = useState<IDashboardHeaderItems[]>([
         { key: 'volume', label: 'Объем', visible: 1 },
         { key: 'price', label: 'Цена', visible: 1 },
         { key: 'turnover', label: 'Оборот', visible: 1 },
     ]);
+    
     function toggleCheckBox(key: string) {
         let updatedColums = columns.map(col => {
             if (col.key === key) {
@@ -29,13 +31,11 @@ const DashboardHeader = ({isOpen, onClose}: Props) => {
     }
     return (
         <div className={styles.header}>
-            <DashboarButtons isOpen={isOpen} onClose={onClose}/>
+            <DashboarButtons onToggleModal={onToggleModal}/>
             {isOpen === 'settings'
-                && <Popup
+                && <PopupSettings
                     isOpen={isOpen}
-                    onClose={onClose}
-                    variant={'settings'}
-                    title={'НАСТРОЙКА СТОЛБЦОВ'}
+                    onToggleModal={onToggleModal}
                 >
                     {columns.map((checked) => (
                         <CustomCheckbox
@@ -45,7 +45,7 @@ const DashboardHeader = ({isOpen, onClose}: Props) => {
                             onChange={() => toggleCheckBox(checked.key)}
                         />
                     ))}
-                </Popup>}
+                </PopupSettings>}
             <div className={styles.items}>
                 <div className={styles.item}>Описаеие</div>
                 {columns.map((col, index) => col.visible !== 0 && (

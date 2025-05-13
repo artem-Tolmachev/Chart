@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { MarketData } from "types";
 import { getFutures } from "../api/getFutures";
+
 export const useTickers = () => {
     const [tickers, setTickers] = useState<MarketData[]>([]);
+  
     useEffect(() => {
         const coins = localStorage.getItem('tickers');
         if(coins){
@@ -19,5 +21,5 @@ export const useTickers = () => {
         loadTicker()
     }, [])
 
-      return tickers
+      return tickers;
 }

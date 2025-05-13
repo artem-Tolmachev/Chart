@@ -1,35 +1,58 @@
-import { getFutures } from 'features/dashboard/api/getFutures';
+import Search from 'shared/components/Search/Search';
+import TickerItem from '../TickerItem/TickerItem';
 import styles from './styles.module.css';
-import { useEffect, useState } from 'react';
-import { MarketData } from 'types';
 import { useTickers } from 'features/dashboard/hooks/useTickers';
+import { useFilter } from 'features/dashboard/hooks/useFilter';
+import { Ref, useState } from 'react';
+import { useDebounce } from 'features/dashboard/hooks/useDebounce';
+import { MarketData } from 'types';
+import { useObserver } from 'features/dashboard/hooks/useObserver';
+import { useInView } from 'react-intersection-observer';
+import Loader from '../Loader/Loader';
 
-const CoinSearchPopup = () => {
-    const tickers = useTickers();
-    
+interface Props {
+    tickers: MarketData[];
+    onToggleModal: (arg: boolean) => void;
+}
+
+const CoinSearchPopup = ({ tickers, onToggleModal}: Props) => {
+    const [value, setValue] = useState('');
+    const data = useDebounce(value, 1000)
+    const filtred = useFilter(data, tickers);
+ 
     return (
-        <ul className={styles.list}>
-            {tickers.map((ticker) => 
-            <li className={styles.item} key={ticker.symbol}>
-                <div className={styles.iconWrapper}>
-                    <img 
-                    className={styles.icon}
-                    src={ticker.src} 
-                    width="20px" 
-                    height="20px" 
-                    loading="lazy"
-                    onError={(e) => {
-                        e.currentTarget.src = 'https://s3-symbol-logo.tradingview.com/crypto/XTVCUSDT.svg';
-                    }}
-                    />
+        <>
+            <div className={styles.header}>
+                <h3 className={styles.addTitle}>Выбрать инструмент</h3>
+                <div className={styles.close} onClick={() => onToggleModal(false)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" strokeWidth="18" height="18"><path stroke="currentColor" strokeWidth="1.2" d="m1.5 1.5 15 15m0-15-15 15"></path></svg>
                 </div>
-                {ticker.symbol}
-            </li>)}
-        </ul>
+            </div>
+            <div className={styles.addWrapper}>
+                <Search onChange={setValue} value={value} />
+                <div className={styles.buttons}>
+                    <button className={`${styles.btn} ${styles.btn_active}`}>Все</button>
+                    <button className={styles.btn}>Акции</button>
+                    <button className={styles.btn}>Фонды</button>
+                    <button className={styles.btn}>Фьючерсы</button>
+                </div>
+                <Loader tick={filtred}/>
+            </div>
+        </>
     )
 }
+
 export default CoinSearchPopup;
 
 
 
 
+                //        <ul className={styles.list} >
+                //     {filtred.map((ticker) =>
+                //         <TickerItem
+                //             key={ticker.symbol}
+                //             symbol={ticker.symbol}
+                //             src={ticker.src}
+                //         />
+                //     )}
+                // </ul>

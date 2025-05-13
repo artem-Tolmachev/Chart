@@ -1,9 +1,8 @@
 import { getFutures } from 'features/dashboard/api/getFutures';
-import styles from './styles.module.css';
 import { useEffect, useState } from 'react';
-import { IDashboardHeaderItems, MarketData } from 'types';
+import { MarketData } from 'types';
 import DashboardTicker from '../DashboardTicker/DashboardTicker';
-import DashboardHeader from '../DashboardHeader/DashboardHeader';
+import styles from './styles.module.css';
 
 const DashboardTickerOut = () => {
     const [tickers, setTickers] = useState<MarketData[]>([]);
@@ -19,7 +18,7 @@ const DashboardTickerOut = () => {
     return (
         <div className={styles.tickers_list}>
             {
-                tickers.map((ticker, index) => (
+                tickers.map((ticker) => (
                     <DashboardTicker
                         key={ticker.symbol}
                         name={ticker.symbol}
