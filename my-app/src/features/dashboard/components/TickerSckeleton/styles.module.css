@@ -13,7 +13,7 @@
     background-color: var(--color-text-secondary);
 }
 .text{
-    height: 10px;
+    height: 15px;
     width: 220px;
     border-radius: 10px;
     background-color: var(--color-text-secondary);
