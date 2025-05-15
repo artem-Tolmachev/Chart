@@ -1,13 +1,9 @@
 import Search from 'shared/components/Search/Search';
-import TickerItem from '../TickerItem/TickerItem';
 import styles from './styles.module.css';
-import { useTickers } from 'features/dashboard/hooks/useTickers';
 import { useFilter } from 'features/dashboard/hooks/useFilter';
-import { Ref, useState } from 'react';
+import { useState } from 'react';
 import { useDebounce } from 'features/dashboard/hooks/useDebounce';
 import { MarketData } from 'types';
-import { useObserver } from 'features/dashboard/hooks/useObserver';
-import { useInView } from 'react-intersection-observer';
 import Loader from '../Loader/Loader';
 
 interface Props {
@@ -43,16 +39,3 @@ const CoinSearchPopup = ({ tickers, onToggleModal}: Props) => {
 }
 
 export default CoinSearchPopup;
-
-
-
-
-                //        <ul className={styles.list} >
-                //     {filtred.map((ticker) =>
-                //         <TickerItem
-                //             key={ticker.symbol}
-                //             symbol={ticker.symbol}
-                //             src={ticker.src}
-                //         />
-                //     )}
-                // </ul>

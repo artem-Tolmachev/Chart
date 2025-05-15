@@ -3,12 +3,14 @@ import { useState } from 'react';
 import DashboardHeader from '../DashboardHeader/DashboardHeader';
 import CoinSearchPopup from '../CoinSearchPopup/CoinSearchPopup';
 import PopupAdditem from '../PopupAdditem/PopupAdditem';
-import { useTickers } from 'features/dashboard/hooks/useTickers';
-import { useObserver } from 'features/dashboard/hooks/useObserver';
+import { useGetCoinsQuery } from 'services/getApiCoins';
+import { tickerParser } from 'features/dashboard/utilse/Parser';
+
 
 const DashboardQuotesSidebar = () => {
     const [isOpen, setIsOpen] = useState<boolean | string>(false);
-    const tickers = useTickers()
+    const { data, isLoading, error } = useGetCoinsQuery();
+
  
     return (
         <div className={styles.wrapper}>
@@ -24,7 +26,7 @@ const DashboardQuotesSidebar = () => {
                     >
                         {
                             isOpen === 'add' &&
-                            <CoinSearchPopup tickers={tickers} onToggleModal={setIsOpen}/>
+                            <CoinSearchPopup tickers={data ?? []} onToggleModal={setIsOpen}/>
                         }
                     </PopupAdditem>}
             </div>

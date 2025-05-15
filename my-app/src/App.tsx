@@ -1,7 +1,8 @@
 import Main from './shared/layouts/Main';
 import styles from './styles.module.css';
-function App() {
 
+function App() {
+  
   return (
     <div className={styles.app}>
       <Main/>
