@@ -2,6 +2,9 @@ import { MarketData } from "types";
 import { ListChildComponentProps } from 'react-window';
 import TickerItem from "../TickerItem/TickerItem";
 import TickerSckeleton from "../TickerSckeleton/TickerSckeleton";
+import { addCoin } from '../../../slices/CoinsSlice';
+import { useAppDispatch } from "store/store";
+import { useCallback } from "react";
 
 type ItemData = {
   items: MarketData[];
@@ -15,11 +18,21 @@ const ContainerLoader = ({ data, index, style }:
 ) => {
   const item = data.items[index];
   const isLoaded = data.itemStatusMap[index] === data.LOADED;
+  const dispatch = useAppDispatch();
   
+  const handleClick = useCallback(() => {
+  dispatch(addCoin(item));
+  }, [dispatch, item]);
+ 
   return (
     <div style={{ ...style, alignItems: 'center'}}>
         {isLoaded && item ? (
-          <TickerItem key={item.symbol} symbol={item.symbol} src={item.src} />
+          <TickerItem 
+          onClick={handleClick}
+          key={item.symbol}  
+          symbol={item.symbol} 
+          src={item.src} 
+          />
         ) : (
           <TickerSckeleton/>
         )}

@@ -3,15 +3,13 @@ import { useState } from 'react';
 import DashboardHeader from '../DashboardHeader/DashboardHeader';
 import CoinSearchPopup from '../CoinSearchPopup/CoinSearchPopup';
 import PopupAdditem from '../PopupAdditem/PopupAdditem';
-import { useGetCoinsQuery } from 'services/getApiCoins';
-import { tickerParser } from 'features/dashboard/utilse/Parser';
+import { useGetCoinsQuery } from 'features/services/getApiCoins';
 
 
 const DashboardQuotesSidebar = () => {
     const [isOpen, setIsOpen] = useState<boolean | string>(false);
     const { data, isLoading, error } = useGetCoinsQuery();
-
- 
+    
     return (
         <div className={styles.wrapper}>
             <div className={styles.dashbord_right}>
