@@ -3,7 +3,7 @@ import { ListChildComponentProps } from 'react-window';
 import TickerItem from "../TickerItem/TickerItem";
 import TickerSckeleton from "../TickerSckeleton/TickerSckeleton";
 import { addCoin } from '../../../slices/CoinsSlice';
-import { useAppDispatch } from "store/store";
+import { useAppDispatch, useAppSelector } from "store/store";
 import { useCallback } from "react";
 
 type ItemData = {
@@ -19,10 +19,15 @@ const ContainerLoader = ({ data, index, style }:
   const item = data.items[index];
   const isLoaded = data.itemStatusMap[index] === data.LOADED;
   const dispatch = useAppDispatch();
-  
-  const handleClick = useCallback(() => {
-  dispatch(addCoin(item));
-  }, [dispatch, item]);
+  const selectedCoin: MarketData[] = useAppSelector((store) => store.coins);
+ 
+  const handleClick = () => {
+    //Checking if the element already exists in the store.
+    let exist = selectedCoin.some(el => el.symbol === item.symbol);
+    if(!exist){
+      dispatch(addCoin(item));
+    }
+  };
  
   return (
     <div style={{ ...style, alignItems: 'center'}}>

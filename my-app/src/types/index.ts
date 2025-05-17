@@ -36,6 +36,14 @@ interface ICoinsData {
 // volume24h	✅	Объём торгов за 24ч (иногда turnover вместо volume).
 export type MarketData = Pick<ICoinsData, "turnover24h" | "volume24h" | "symbol" | "lastPrice"> & {src: string};
 
+export type TickerProps = {
+  key: string;
+  name: string;
+  price: number;
+  turnover: number;
+  volume: number;
+};
+
 export type InitiaLChartSettings = {
     interval: string | undefined;
     symbol: string;
@@ -72,7 +80,7 @@ export type KlineTupleValume = [
 
 export interface IDashboardHeaderItems {
     key: string;
-    label: string;
+    name: string;
     visible: number;
 }
 

@@ -18,7 +18,6 @@ function PopupSettings({isOpen, onToggleModal, children}: Props){
     }
   }
 
-
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {

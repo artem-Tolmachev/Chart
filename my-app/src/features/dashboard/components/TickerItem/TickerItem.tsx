@@ -1,6 +1,5 @@
-import { useAppSelector } from 'store/store';
+import IconCoin from 'shared/components/IconCoin/IconCoin';
 import styles from './styles.module.css';
-import { MarketData } from "types";
 import React from 'react';
 
 interface Props {
@@ -11,24 +10,9 @@ interface Props {
 
 const TickerItem = ({ symbol, src, onClick}: Props) => {
 
-const selectedCoin: MarketData[] = useAppSelector((store) => store.coins);
-console.log(selectedCoin);
-
     return (
         <div className={styles.item} onClick={() => onClick()} >
-            <div className={styles.wrapper}>
-                <img
-                    className={styles.icon}
-                    src={src}
-                    width="20px"
-                    height="20px"
-                    loading="lazy"
-                    onError={(e) => {
-                        e.currentTarget.src = 'https://s3-symbol-logo.tradingview.com/crypto/XTVCUSDT.svg';
-                    }}
-                />
-                <div className={styles.symbol}>{symbol}</div>
-            </div>
+            <IconCoin symbol={symbol} src={src}/>
             <div className={styles.controller}>
                 {/* <span role="img" aria-hidden="false">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28">
@@ -48,4 +32,4 @@ console.log(selectedCoin);
         </div>
     )
 }
-export default React.memo(TickerItem);
+export default TickerItem;

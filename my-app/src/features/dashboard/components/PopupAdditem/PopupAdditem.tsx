@@ -26,15 +26,6 @@ function PopupAdditem({isOpen, onToggleModal, children }: Props){
 
   return (
     <div ref={popupRef} className={styles.addPopup}>
-      {/* <h3 className={styles.addTitle}>Выбрать инструмент</h3>
-      <div className={styles.coinsadd}>
-        <div className={styles.close} onClick={() => onToggleModal(false)}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" strokeWidth="18" height="18"><path stroke="currentColor" strokeWidth="1.2" d="m1.5 1.5 15 15m0-15-15 15"></path></svg>
-        </div>
-      </div>
-      <div className={styles.addWrapper}>
-        {children}
-      </div> */}
       {children}
     </div>
   )

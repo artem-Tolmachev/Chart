@@ -1,4 +1,5 @@
 import styles from './styles.module.css';
+
 interface Props {
   checked: number;
   onChange: () => void;
