@@ -9,15 +9,35 @@
     cursor: pointer;
     transition: all .3s;
 }
-
 .item:hover{
     background-color: var(--color-panel);
 }
-.controller{
+.buttons{
     display: flex;
-    justify-content: space-around;
-    width: 50px;
+    width: 70px;
+}
+.containerButtons{
+    display: flex;
+}
+
+.icon:hover{
+    background-color: var(--color-grid);
+}
+.icon svg{
+    fill: var(--color-text-secondary);
+}
+.del:hover {
+  fill: red; 
 }
 .add{
-    color: rgb(12, 75, 236);
+    fill: rgb(12, 75, 236);
+}
+.extraClass{
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    transition: all .3s;
+}
+.extraClass:hover{
+    background-color: var(--color-grid);
 }

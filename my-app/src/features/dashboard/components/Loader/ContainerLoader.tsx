@@ -2,9 +2,9 @@ import { MarketData } from "types";
 import { ListChildComponentProps } from 'react-window';
 import TickerItem from "../TickerItem/TickerItem";
 import TickerSckeleton from "../TickerSckeleton/TickerSckeleton";
-import { addCoin } from '../../../slices/CoinsSlice';
+import { addCoin, delCoin } from '../../../slices/CoinsSlice';
 import { useAppDispatch, useAppSelector } from "store/store";
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type ItemData = {
   items: MarketData[];
@@ -20,15 +20,22 @@ const ContainerLoader = ({ data, index, style }:
   const isLoaded = data.itemStatusMap[index] === data.LOADED;
   const dispatch = useAppDispatch();
   const selectedCoin: MarketData[] = useAppSelector((store) => store.coins);
- 
+  const [flag, setFalse] = useState(false);
+
+  //Checking if the element already exists in the store.
+  if (!item || !item.symbol) return null;
+  let exist = selectedCoin.some(el => el?.symbol === item.symbol);
   const handleClick = () => {
-    //Checking if the element already exists in the store.
-    let exist = selectedCoin.some(el => el.symbol === item.symbol);
     if(!exist){
+      setFalse(exist)
       dispatch(addCoin(item));
     }
   };
  
+  const deliteCoin = () => {
+    dispatch(delCoin(item));
+  }
+
   return (
     <div style={{ ...style, alignItems: 'center'}}>
         {isLoaded && item ? (
@@ -37,6 +44,8 @@ const ContainerLoader = ({ data, index, style }:
           key={item.symbol}  
           symbol={item.symbol} 
           src={item.src} 
+          flag={exist}
+          deliteCoin={deliteCoin}
           />
         ) : (
           <TickerSckeleton/>
