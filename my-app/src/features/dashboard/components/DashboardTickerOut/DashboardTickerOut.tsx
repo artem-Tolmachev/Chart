@@ -5,7 +5,7 @@ import styles from './styles.module.css';
 import { IDashboardHeaderItems, MarketData } from 'types';
 
 interface Props {
-    columns: IDashboardHeaderItems[]
+    columns: IDashboardHeaderItems[];
 }
 const DashboardTickerOut = ({ columns }: Props) => {
     const selectedCoin: MarketData[] = useAppSelector((store) => store.coins);
@@ -22,6 +22,7 @@ const DashboardTickerOut = ({ columns }: Props) => {
                         volume={ticker.turnover24h}
                         col={columns}
                         src={ticker.src}
+                        item={ticker}
                     />))
             }
 

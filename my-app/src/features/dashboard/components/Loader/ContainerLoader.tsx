@@ -11,9 +11,10 @@ type ItemData = {
   itemStatusMap: { [index: number]: number };
   LOADED: number;
   LOADING: number;
+  closeAddModal: (arg: boolean) => void;
 };
 
-const ContainerLoader = ({ data, index, style }:
+const ContainerLoader = ({ data, index, style}:
   ListChildComponentProps<ItemData>
 ) => {
   const item = data.items[index];
@@ -25,6 +26,7 @@ const ContainerLoader = ({ data, index, style }:
   //Checking if the element already exists in the store.
   if (!item || !item.symbol) return null;
   let exist = selectedCoin.some(el => el?.symbol === item.symbol);
+
   const handleClick = () => {
     if(!exist){
       setFalse(exist)
@@ -39,14 +41,15 @@ const ContainerLoader = ({ data, index, style }:
   return (
     <div style={{ ...style, alignItems: 'center'}}>
         {isLoaded && item ? (
-          <TickerItem 
-          onClick={handleClick}
-          key={item.symbol}  
-          symbol={item.symbol} 
-          src={item.src} 
-          flag={exist}
+        <TickerItem
+          addCoin={handleClick}
           deliteCoin={deliteCoin}
-          />
+          key={item.symbol}
+          symbol={item.symbol}
+          src={item.src}
+          flag={exist}
+          closeModal={data.closeAddModal}
+        />
         ) : (
           <TickerSckeleton/>
         )}

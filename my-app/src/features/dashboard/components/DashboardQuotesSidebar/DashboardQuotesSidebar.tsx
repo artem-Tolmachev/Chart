@@ -41,7 +41,9 @@ const DashboardQuotesSidebar = () => {
                             <CoinSearchPopup tickers={data ?? []} onToggleModal={setIsOpen}/>
                         }
                     </PopupAdditem>}
-                    <DashboardTickerOut columns={columns}/>
+                    <DashboardTickerOut 
+                    columns={columns}
+                    />
             </div>
         </div>
     )

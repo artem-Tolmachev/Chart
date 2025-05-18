@@ -5,7 +5,7 @@
     align-items: center;
     border-bottom: solid 1px var(--color-active);
     cursor: pointer;
-    
+    padding-right: 20px;
     &:hover{
         background-color: var(--color-active);
     }

@@ -4,8 +4,12 @@ import ContainerLoader from "./ContainerLoader";
 import { MarketData } from "types";
 import { useInfiniteTickers, LOADED, LOADING } from "features/dashboard/hooks/useInfiniteTickers";
 
-interface Props { tick: MarketData[];}
-export default function Loader({tick}: Props) {
+interface Props { 
+  tick: MarketData[];
+  closeAddModal: (arg: boolean) => void;
+}
+
+export default function Loader({tick, closeAddModal}: Props) {
   const {isItemLoaded, loadMore, items, itemStatusMap} = useInfiniteTickers({tick});
   
   return (
@@ -29,6 +33,7 @@ export default function Loader({tick}: Props) {
               itemStatusMap,
               LOADED,
               LOADING,
+              closeAddModal,
             }}
           >
             {ContainerLoader}

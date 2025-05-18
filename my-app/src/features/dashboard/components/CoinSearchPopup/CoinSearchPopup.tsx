@@ -32,7 +32,10 @@ const CoinSearchPopup = ({ tickers, onToggleModal}: Props) => {
                     <button className={styles.btn}>Фонды</button>
                     <button className={styles.btn}>Фьючерсы</button>
                 </div>
-                <Loader tick={filtred}/>
+                <Loader 
+                tick={filtred}
+                closeAddModal={onToggleModal}
+                />
             </div>
         </>
     )
