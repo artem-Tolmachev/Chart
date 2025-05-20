@@ -4,7 +4,7 @@ import TickerItem from "../TickerItem/TickerItem";
 import TickerSckeleton from "../TickerSckeleton/TickerSckeleton";
 import { addCoin, delCoin } from '../../../slices/CoinsSlice';
 import { useAppDispatch, useAppSelector } from "store/store";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 type ItemData = {
   items: MarketData[];
@@ -20,7 +20,7 @@ const ContainerLoader = ({ data, index, style}:
   const item = data.items[index];
   const isLoaded = data.itemStatusMap[index] === data.LOADED;
   const dispatch = useAppDispatch();
-  const selectedCoin: MarketData[] = useAppSelector((store) => store.coins);
+  const selectedCoin: MarketData[] = useAppSelector((store) => store.coins.coins);
   const [flag, setFalse] = useState(false);
 
   //Checking if the element already exists in the store.

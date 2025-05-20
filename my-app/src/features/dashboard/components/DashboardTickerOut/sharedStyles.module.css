@@ -1,0 +1,16 @@
+.item {
+    display: flex;
+    padding: 8px 0px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 1px var(--color-active);
+    cursor: pointer;
+    padding-right: 20px;
+    border: 2px solid transparent;
+    &:hover{
+        background-color: var(--color-active);
+    }
+}
+.active{
+    border: 2px solid var(--color-green);
+}

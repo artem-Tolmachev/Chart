@@ -1,22 +1,15 @@
 import * as React from 'react';
 import { useKlines } from '../../hooks/useKlines';
-import { AreaSeries, CandlestickSeries, ColorType, createChart, HistogramSeries } from 'lightweight-charts';
-import { useEffect, useState, useRef } from 'react';
-import { InitiaLChartSettings, Cand, Kline } from '../../../../types';
+import {  CandlestickSeries, ColorType, createChart, HistogramSeries } from 'lightweight-charts';
+import { useEffect, useRef } from 'react';
 import styles from './styles.module.css';
+import { useAppSelector } from 'store/store';
+import { InitiaLChartSettings } from 'types';
 
 function Chart() {
     const chart = useRef<HTMLDivElement | null>(null);
-
-    const [chartSettings, setChartSettings] = useState<InitiaLChartSettings>({
-        interval: '60',
-        symbol: 'BTCUSDT',
-        limit: '100',
-        category: 'inverse',
-    });
-
+    const chartSettings = useAppSelector<InitiaLChartSettings>((store) => store.coins.chartSettings)
     const { data, volume } = useKlines(chartSettings);
-
     const memoizedData = React.useMemo(() => data, [JSON.stringify(data)]);
     const memoizedVolume = React.useMemo(() => volume, [JSON.stringify(volume)]);
 
@@ -65,20 +58,14 @@ function Chart() {
         return () => {
             Chart.remove()
         }
-
     }, [memoizedData, memoizedVolume])
 
-    function TimeframeHandler(e: React.MouseEvent<HTMLButtonElement>) {
-        const time = (e.target as HTMLElement).dataset.interval
-        setChartSettings(prev => ({ ...prev, interval: time }))
-    }
 
     return (
         <>
             <div className={styles.section}>
                 <div className={styles.wrapper}>
-                    <div className={styles.chart} ref={chart} >
-
+                    <div className={styles.chart} ref={chart} >                        
                     </div>
                 </div>
             </div>
