@@ -1,5 +1,5 @@
-import Header from "shared/components/Header/Header";
-import DashboardPage from "../../features/dashboard/DashboardPage/DashboardPage";
+import Header from "features/dashboard/components/widgets/Header/Header";
+import DashboardPage from "../../features/dashboard/components/ui/DashboardPage/DashboardPage";
 import styles from './styles.module.css';
 
 function Main(){

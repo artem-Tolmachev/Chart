@@ -1,0 +1,19 @@
+.section{
+  width: 80%;
+  height: 100%;
+  padding-top: var(--padding-block);
+  padding-bottom: var(--padding-block);
+  padding-left: var(--padding-block);
+}
+.wrapper{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: var(--border-block);;
+  border-top-right-radius: var(--border-block);;
+  overflow: hidden;
+}
+.chart {
+    width: 100%;
+    height: 100%;
+  }

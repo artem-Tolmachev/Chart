@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IDashboardHeaderItems } from "types";
+import { IDashboardHeaderItems } from "features/dashboard/types";
 
 export const useCollums = (col: IDashboardHeaderItems[]) => {
     const [columns, setColumns] = useState<IDashboardHeaderItems[]>(col)

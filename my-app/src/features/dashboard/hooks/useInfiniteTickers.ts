@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { MarketData } from "types";
+import { MarketData } from "features/dashboard/types";
 
 export const LOADING = 1;
 export const LOADED = 2;

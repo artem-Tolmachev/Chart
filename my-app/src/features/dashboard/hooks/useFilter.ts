@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { MarketData } from 'types';
+import { MarketData } from 'features/dashboard/types';
 
 export function useFilter(filter: string, data: MarketData[]): MarketData[] {
     return useMemo(() => {

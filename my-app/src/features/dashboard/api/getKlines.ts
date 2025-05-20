@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {dataKlinesParser, dataValumeParser} from '../utilse/Parser';
-import {InitiaLChartSettings, Kline, Cand, UseKlinesResult} from '../../../types/index';
+import {dataKlinesParser, dataValumeParser} from '../utils/Parser';
+import {InitiaLChartSettings, Kline, Cand, UseKlinesResult} from '../types/index';
 
 export const getKlines = async (
     interval: string | undefined,

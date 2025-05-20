@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { getKlines } from '../api/getKlines';
-import {InitiaLChartSettings, Kline, Cand, UseKlinesResult} from '../../../types/index';
+import {InitiaLChartSettings, Kline, Cand, UseKlinesResult} from '../types/index';
 export const useKlines = (chartSettings: InitiaLChartSettings): UseKlinesResult => {
 
     const [volume, setVolume] = useState<Cand[]>([]);
