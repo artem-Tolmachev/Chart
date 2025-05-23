@@ -1,6 +1,6 @@
 import { UTCTimestamp } from 'lightweight-charts';
 
-interface ICoinsData {
+export interface CoinsData {
   ask1Price: string; // Лучшая цена продажи (аск) на текущий момент
   ask1Size: string; // Количество доступное на продаже по лучшей цене
   basis: string; // Базис (разница между ценой фьючерса и спотовой ценой), иногда пустое
@@ -28,13 +28,23 @@ interface ICoinsData {
   symbol: string; // Название торговой пары (символ), например "BTCUSDT"
   turnover24h: number; // Оборот за последние 24 часа (сумма всех сделок)
   volume24h: number; // Объём торговли за 24 часа (в единицах базового актива)
+  src: string;
 }
 
-// symbol	✅	Название монеты, например BTCUSDT.
-// lastPrice	✅	Текущая (последняя) цена.
-// price24hPcnt	✅	Изменение за 24ч в процентах (%).
-// volume24h	✅	Объём торгов за 24ч (иногда turnover вместо volume).
-export type MarketData = Pick<ICoinsData, "turnover24h" | "volume24h" | "symbol" | "lastPrice"> & {src: string};
+// export type MarketData = 
+//   Pick<CoinsData, "turnover24h" | "volume24h" | "symbol" | "lastPrice"> & {src: string};
+export type MarketData = 
+  Pick<CoinsData, 
+  "turnover24h" 
+  | "volume24h" 
+  | "symbol" 
+  | "lastPrice"
+  | "ask1Price"
+  | "basis"
+  | "basisRate"
+  | "bid1Price"
+  | "src"
+  >;
 
 export type TickerProps = {
   key: string;

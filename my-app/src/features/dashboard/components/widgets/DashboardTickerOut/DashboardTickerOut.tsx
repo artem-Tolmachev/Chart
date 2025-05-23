@@ -34,6 +34,8 @@ const DashboardTickerOut = ({ columns }: Props) => {
                             col={columns}
                             src={ticker.src}
                             item={ticker}
+                            ask1Price={ticker.ask1Price}
+                            bid1Price={ticker.bid1Price}
                         />
                         </div>
                     )

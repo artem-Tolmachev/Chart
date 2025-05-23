@@ -20,7 +20,6 @@ const IconCoin = ({ symbol, src }: Props) => {
             />
             <div className={styles.symbol}>{symbol}</div>
         </div>
-
     )
 }
 export default IconCoin;

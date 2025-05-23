@@ -1,5 +1,5 @@
 import styles from './styles.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DashboardHeader from '../DashboardHeader/DashboardHeader';
 import CoinSearchPopup from '../CoinSearchPopup/CoinSearchPopup';
 import PopupAdditem from '../PopupAdditem/PopupAdditem';
@@ -7,6 +7,8 @@ import { useGetCoinsQuery } from 'features/coins/services/getApiCoins';
 import DashboardTickerOut from '../DashboardTickerOut/DashboardTickerOut';
 import { useCollums } from 'features/dashboard/hooks/useCollums';
 import { IDashboardHeaderItems } from 'features/dashboard/types';
+import { useAppDispatch } from 'app/store/store';
+import {defaultLoading} from '../../../../coins/slices/CoinsSlice';
 
 interface IControlCheced {
     columns: IDashboardHeaderItems[];
@@ -15,13 +17,23 @@ interface IControlCheced {
 
 const DashboardQuotesSidebar = () => {
     const [isOpen, setIsOpen] = useState<boolean | string>(false);
-    const { data } = useGetCoinsQuery();
-
     const {columns, toggleCheckBox}: IControlCheced = useCollums([
         { key: 'volume', name: 'Объем', visible: 1 },
         { key: 'price', name: 'Цена', visible: 1 },
         { key: 'turnover', name: 'Оборот', visible: 1 }
     ])
+    const {data, isLoading, error} = useGetCoinsQuery();
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        if (data?.btcData) {
+            dispatch(defaultLoading(data.btcData));
+        }
+    }, [data?.btcData]);
+
+    if(!data) return <>Нет данных</>
+    const {tickers, btcData} = data;
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.dashbord_right}>
@@ -38,10 +50,10 @@ const DashboardQuotesSidebar = () => {
                     >
                         {
                             isOpen === 'add' &&
-                            <CoinSearchPopup tickers={data ?? []} onToggleModal={setIsOpen}/>
+                            <CoinSearchPopup tickers={tickers} onToggleModal={setIsOpen}/>
                         }
                     </PopupAdditem>}
-                    <DashboardTickerOut 
+                    <DashboardTickerOut
                     columns={columns}
                     />
             </div>

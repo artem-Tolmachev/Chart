@@ -9,7 +9,7 @@ import TradingInfoPanel from '../TradingInfoPanel/TradingInfoPanel';
 
 function Chart() {
     const chart = useRef<HTMLDivElement | null>(null);
-    const chartSettings = useAppSelector<InitiaLChartSettings>((store) => store.coins.chartSettings)
+    const chartSettings = useAppSelector<InitiaLChartSettings>((store) => store.coins.chartSettings);
     const { data, volume } = useKlines(chartSettings);
     const memoizedData = React.useMemo(() => data, [JSON.stringify(data)]);
     const memoizedVolume = React.useMemo(() => volume, [JSON.stringify(volume)]);

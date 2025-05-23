@@ -1,56 +1,62 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { InitiaLChartSettings, MarketData } from "features/dashboard/types";
-
-interface CoinOption {
-  src: string;
-  symbol: string;
-}
-interface chartSettings {
-  interval: string;
-  symbol: string;
-  limit: string;
-  category: string;
-  };
+import { MarketData } from "features/dashboard/types";
+import {
+  DEFAULT_CHART_SETTINGS,
+  DEFAULT_COIN_OPTION,
+  DefaultCoin,
+  chartSettings
+} from '../../coins/constants/defaultSettings';
 
 interface CoinsState {
   chartSettings: chartSettings;
   coins: MarketData[];
-  CoinOption: CoinOption;
+  CoinData: DefaultCoin & {
+    src: string;
+    symbol: string;
+  };
 }
-
-
 const initialState: CoinsState = {
   coins: [],
-  chartSettings: {
-    interval: '60',
-    symbol: 'BTCUSDT',
-    limit: '100',
-    category: 'inverse'
-  },
-  CoinOption: {
+  chartSettings: DEFAULT_CHART_SETTINGS,
+  CoinData: {
+    ...DEFAULT_COIN_OPTION,
     src: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg',
     symbol: 'BTCUSDT'
-  }
+  },
 };
 
 export const coins = createSlice({
   name: 'coins',
   initialState,
   reducers: {
-    addCoin: (state, action: PayloadAction<MarketData>) => {state.coins.push(action.payload)},
-    
-    delCoin: (state, action: PayloadAction<MarketData>) => {
-      state.coins = state.coins.filter(item => item.symbol !== action.payload.symbol)
-    },
+  defaultLoading: (state, action: PayloadAction<DefaultCoin>) => { state.CoinData = {
+            ...state.CoinData,
+    ask1Price: action.payload.ask1Price,
+    bid1Price: action.payload.bid1Price
+    }
 
-    addChart: (state, action: PayloadAction<{ symbol: string; src: string; }>) => {
-      state.CoinOption = {
-        ...state.CoinOption,
-        symbol: action.payload.symbol,
-        src: action.payload.src
-      }
-    },
   },
+  addCoin: (state, action: PayloadAction<MarketData>) => { state.coins.push(action.payload) },
+
+  delCoin: (state, action: PayloadAction<MarketData>) => {
+    state.coins = state.coins.filter(item => item.symbol !== action.payload.symbol)
+  },
+
+  addChart: (state, action: PayloadAction<{ 
+    symbol: string,
+    src: string,
+    ask1Price: string,
+    bid1Price: string
+  }>) => {
+    state.CoinData = {
+      ...state.CoinData,
+      symbol: action.payload.symbol,
+      src: action.payload.src,
+      ask1Price: action.payload.ask1Price,
+      bid1Price: action.payload.bid1Price
+    }
+  },
+},
 })
 
-export const {addCoin, delCoin, addChart} = coins.actions
+export const { addCoin, delCoin, addChart, defaultLoading } = coins.actions
