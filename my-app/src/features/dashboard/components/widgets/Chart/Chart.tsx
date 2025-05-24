@@ -1,17 +1,25 @@
 import * as React from 'react';
-import { useKlines } from '../../../hooks/useKlines';
+import { useTimeSortedKlines } from '../../../hooks/useTimeSortedKlines';
 import {  CandlestickSeries, ColorType, createChart, HistogramSeries } from 'lightweight-charts';
 import { useEffect, useRef } from 'react';
 import styles from './styles.module.css';
-import { InitiaLChartSettings } from 'features/dashboard/types';
+import { Cand, InitiaLChartSettings, Kline } from 'features/dashboard/types';
 import { useAppSelector } from 'app/store/store';
 import TradingInfoPanel from '../TradingInfoPanel/TradingInfoPanel';
+import { useGetKlinesQuery } from 'features/coins/services/getApiCoins';
 
 function Chart() {
     const chart = useRef<HTMLDivElement | null>(null);
     const chartSettings = useAppSelector<InitiaLChartSettings>((store) => store.coins.chartSettings);
-    const { data, volume } = useKlines(chartSettings);
-    const memoizedData = React.useMemo(() => data, [JSON.stringify(data)]);
+
+    const { data: klinesData, isLoading } = useGetKlinesQuery(chartSettings)
+    const dataKlines: Kline[] = [...klinesData?.dataKlines ?? []];
+    const dataValume: Cand[] = [...klinesData?.dataValume ?? []];
+  
+    const { data, volume } = useTimeSortedKlines({dataKlines, dataValume});
+    
+
+    const memoizedData = React.useMemo(() => dataKlines, [JSON.stringify(dataKlines)]);
     const memoizedVolume = React.useMemo(() => volume, [JSON.stringify(volume)]);
 
     useEffect(() => {
@@ -52,7 +60,7 @@ function Chart() {
             }
         })
         histogramSeries.setData(volume);
-        candlestickSeries.setData(data);
+        candlestickSeries.setData(dataKlines ?? []);
         Chart.timeScale().fitContent();
 
         return () => {

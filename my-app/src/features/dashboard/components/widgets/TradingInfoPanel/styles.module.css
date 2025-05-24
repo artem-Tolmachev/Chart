@@ -2,9 +2,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.308);
+    z-index: 3;
 }
 
 .wrapper{
@@ -15,8 +13,8 @@
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 2;
     color: var(--color-text-primary);
+    cursor: pointer;
 }
 .ask1Price{
     width: 100px;

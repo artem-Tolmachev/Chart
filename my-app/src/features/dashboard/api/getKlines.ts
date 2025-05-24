@@ -12,7 +12,7 @@ export const getKlines = async (
     let  dataKlines: Kline[] = [];
 
     try {
-        const {data} = await axios.get(`http://localhost:5000/artem-scriener`,{
+        const {data} = await axios.get(`http://localhost:5000/get-klines`,{            
             params: { category, symbol, interval, limit }
         });
 
