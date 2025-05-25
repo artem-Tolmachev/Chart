@@ -1,5 +1,5 @@
 .section{
-  width: 700px;
+  width: calc(100% - 500px);
   height: 100%;
   padding-top: var(--padding-block);
   padding-bottom: var(--padding-block);

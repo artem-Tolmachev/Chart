@@ -14,6 +14,5 @@ export const useTimeSortedKlines = ({dataValume, dataKlines}: Props): UseKlinesR
     const volume = useMemo(() => TimeSort(dataValume), [dataValume]);
     const data = useMemo(() => TimeSort(dataKlines), [dataKlines]);
 
-
-      return {data, volume}
+    return {data, volume}
 }

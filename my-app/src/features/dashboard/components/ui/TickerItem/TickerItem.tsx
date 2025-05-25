@@ -12,7 +12,6 @@ interface Props {
 }
 
 const TickerItem = ({ symbol, src, addCoin, flag, deliteCoin, closeModal}: Props) => {
-
     return (
         <div className={styles.item} onClick={() => addCoin()} >
             <IconCoin symbol={symbol} src={src} />

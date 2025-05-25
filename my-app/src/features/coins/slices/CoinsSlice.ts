@@ -37,11 +37,9 @@ export const coins = createSlice({
 
   },
   addCoin: (state, action: PayloadAction<MarketData>) => { state.coins.push(action.payload) },
-
   delCoin: (state, action: PayloadAction<MarketData>) => {
     state.coins = state.coins.filter(item => item.symbol !== action.payload.symbol)
   },
-
   addChart: (state, action: PayloadAction<{ 
     symbol: string,
     src: string,
@@ -54,9 +52,19 @@ export const coins = createSlice({
       src: action.payload.src,
       ask1Price: action.payload.ask1Price,
       bid1Price: action.payload.bid1Price
+    };
+    state.chartSettings = {
+      ...state.chartSettings,
+      symbol: action.payload.symbol,
     }
   },
+  chancheInterval: (state, action: PayloadAction<{interval: string}>) => {
+    state.chartSettings = {
+    ...state.chartSettings,
+    interval: action.payload.interval
+  }
+  }
 },
 })
 
-export const { addCoin, delCoin, addChart, defaultLoading } = coins.actions
+export const { addCoin, delCoin, addChart, defaultLoading, chancheInterval } = coins.actions
