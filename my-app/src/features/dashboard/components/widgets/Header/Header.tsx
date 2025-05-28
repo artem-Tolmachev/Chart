@@ -5,7 +5,7 @@ import { chancheInterval } from 'features/coins/slices/CoinsSlice';
 import { usePersistedInterval } from 'features/dashboard/hooks/usePersistedInterval';
 
 export default function Header() {
-  const interval = usePersistedInterval();
+  const interval = usePersistedInterval('interval');
   const [activeInterval, setActiveInterval] = useState<string | null>('60');
  
   useEffect(() => {
