@@ -15,6 +15,7 @@ interface CoinsState {
     symbol: string;
   };
 }
+
 const initialState: CoinsState = {
   coins: [],
   chartSettings: DEFAULT_CHART_SETTINGS,

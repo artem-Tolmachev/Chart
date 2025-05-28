@@ -3,14 +3,18 @@ import ReactDOM, { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './app/App';
 import reportWebVitals from './reportWebVitals';
-import { store } from './app/store/store';
+import { store, persistor } from './app/store/store';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 const container = document.getElementById('root')
+
 if (container) {
   const root = createRoot(container)
   root.render(
     <Provider store={store}>
-      <App />
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>,
   )
 } else {

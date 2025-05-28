@@ -11,7 +11,7 @@ import { useGetKlinesQuery } from 'features/coins/services/getApiCoins';
 function Chart() {
     const chart = useRef<HTMLDivElement | null>(null);
     const chartSettings = useAppSelector<InitiaLChartSettings>((store) => store.coins.chartSettings);
-    console.log(chartSettings)
+
     const { data: klinesData, isLoading } = useGetKlinesQuery(chartSettings);
 
     const dataKlines: Kline[] = [...klinesData?.dataKlines ?? []];

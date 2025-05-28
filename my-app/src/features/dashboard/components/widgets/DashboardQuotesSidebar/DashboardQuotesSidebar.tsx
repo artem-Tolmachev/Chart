@@ -24,7 +24,7 @@ const DashboardQuotesSidebar = () => {
     ])
     const {data, isLoading, error} = useGetCoinsQuery();
     const dispatch = useAppDispatch();
-
+    
     useEffect(() => {
         if (data?.btcData) {
             dispatch(defaultLoading(data.btcData));
