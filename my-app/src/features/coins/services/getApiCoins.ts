@@ -2,10 +2,10 @@ import {createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import {dataKlinesParser, dataValumeParser, defaultCoinParser, tickerParser } from 'features/dashboard/utils/Parser';
 import {CoinsData} from '../../dashboard/types/index';
 import {DefaultCoin } from '../constants/defaultSettings';
-
+ // baseQuery: fetchBaseQuery({ baseUrl: 'http://192.168.1.8:5000'}),
 export const coinsApi = createApi({
   reducerPath: 'coinsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000'}),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000'}), 
   endpoints: (builder) => ({
     getCoins: builder.query<{
       tickers: ReturnType<typeof tickerParser>, 
@@ -14,7 +14,7 @@ export const coinsApi = createApi({
       query: () => 'get-futures',
        transformResponse: (response: { result?: { list?: CoinsData[]}}) => {
         const list = response?.result?.list || [];
-        const btcusdt = response?.result?.list?.find((ticker)=> ticker.symbol === 'BTCUSDT');        
+        const btcusdt = response?.result?.list?.find((ticker) => ticker.symbol === 'BTCUSDT');        
         if (!btcusdt) {
         throw new Error('Required BTCUSDT pair not found');
       }
@@ -44,5 +44,4 @@ export const coinsApi = createApi({
     })
   })
 })
-
 export const { useGetCoinsQuery, useGetKlinesQuery } = coinsApi

@@ -23,7 +23,7 @@ const ContainerLoader = ({ data, index, style}:
   const dispatch = useAppDispatch();
   const selectedCoin: MarketData[] = useAppSelector((store) => store.coins.coins);
   const [flag, setFalse] = useState(false);
-
+ 
   if (!item || !item.symbol) return null;
   let exist = selectedCoin.some(el => el?.symbol === item.symbol);
 

@@ -5,10 +5,14 @@ import { IDashboardHeaderItems, MarketData } from 'features/dashboard/types';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from 'app/store/store';
 import { usePersistedInterval } from 'features/dashboard/hooks/usePersistedInterval';
+import { addChart, delCoin } from 'features/coins/slices/CoinsSlice';
+import { useDispatch } from 'react-redux';
+import DeliteButton from '../../ui/DeliteButton/DeliteButton';
 
 interface Props {
     columns: IDashboardHeaderItems[];
 }
+
 const DashboardTickerOut = ({ columns }: Props) => {
     const selectedCoin: MarketData[] = useAppSelector((store) => store.coins.coins);
     const [activeSymbol, setActiveSymbol] = useState<string | null>(null);
@@ -24,6 +28,22 @@ const DashboardTickerOut = ({ columns }: Props) => {
         setActiveSymbol(symbol === activeSymbol ? activeSymbol : symbol);
     }
 
+    const dispatch = useDispatch();
+    
+    const deliteCoin = (item: MarketData) => {
+        dispatch(delCoin(item));
+    }
+
+    function hendleChart<T>(name: string, src: string, ask1Price: string, bid1Price: string){
+        dispatch(addChart({
+            symbol: name,
+            src: src,
+            ask1Price: ask1Price,
+            bid1Price: bid1Price
+        }))
+        getActiveClass(name)
+    }
+
     return (
         <div className={styles.tickers_list}>
             {
@@ -31,9 +51,9 @@ const DashboardTickerOut = ({ columns }: Props) => {
                     <div
                         key={ticker.symbol}
                         className={`${sharedStyles.item} ${ticker.symbol === activeSymbol ? sharedStyles.active : ''}`}
-                        onClick={() => getActiveClass(ticker.symbol)}
+                        onClick={() => hendleChart(ticker.symbol, ticker.src, ticker.ask1Price, ticker.bid1Price)}
                     >
-                            <DashboardTicker
+                        <DashboardTicker
                             key={ticker.symbol}
                             name={ticker.symbol}
                             price={ticker.lastPrice}
@@ -44,7 +64,10 @@ const DashboardTickerOut = ({ columns }: Props) => {
                             item={ticker}
                             ask1Price={ticker.ask1Price}
                             bid1Price={ticker.bid1Price}
+                            activeSymbol={activeSymbol}
+                            setActiveSymbol={setActiveSymbol}
                         />
+                        <DeliteButton onClick={() => deliteCoin(ticker)} />
                         </div>
                     )
                 )

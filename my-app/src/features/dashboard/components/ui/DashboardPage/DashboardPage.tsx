@@ -6,7 +6,6 @@ function DashboardPage(){
         <div className={styles.dashboard}>
             <Chart/>
             <DashboardQuotesSidebar/>
-       
         </div>
     )
 }
