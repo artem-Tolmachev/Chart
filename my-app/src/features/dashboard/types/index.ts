@@ -1,4 +1,4 @@
-import { UTCTimestamp } from 'lightweight-charts';
+import { CandlestickData, CandlestickSeriesOptions, ISeriesApi, Time, UTCTimestamp, WhitespaceData } from 'lightweight-charts';
 
 export interface CoinsData {
   ask1Price: string; // Лучшая цена продажи (аск) на текущий момент
@@ -94,3 +94,4 @@ export interface IDashboardHeaderItems {
     visible: number;
 }
 
+export type Candlestick = ISeriesApi<"Candlestick", Time, CandlestickData<Time> | WhitespaceData<Time>, CandlestickSeriesOptions>  | null;

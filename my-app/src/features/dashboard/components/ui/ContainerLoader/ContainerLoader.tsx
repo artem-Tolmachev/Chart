@@ -3,7 +3,6 @@ import { ListChildComponentProps } from 'react-window';
 import TickerItem from "../TickerItem/TickerItem";
 import TickerSckeleton from "../TickerSkeleton/TickerSkeleton";
 import { addCoin, delCoin } from '../../../../coins/slices/CoinsSlice';
-// import { useAppDispatch, useAppSelector } from "store/store";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "app/store/store";
 

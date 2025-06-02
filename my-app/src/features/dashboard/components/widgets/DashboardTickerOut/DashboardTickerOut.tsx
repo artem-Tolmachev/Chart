@@ -61,11 +61,6 @@ const DashboardTickerOut = ({ columns }: Props) => {
                             volume={ticker.turnover24h}
                             col={columns}
                             src={ticker.src}
-                            item={ticker}
-                            ask1Price={ticker.ask1Price}
-                            bid1Price={ticker.bid1Price}
-                            activeSymbol={activeSymbol}
-                            setActiveSymbol={setActiveSymbol}
                         />
                         <DeliteButton onClick={() => deliteCoin(ticker)} />
                         </div>
