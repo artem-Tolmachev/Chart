@@ -1,0 +1,4 @@
+.dashboard{
+    background-color: var(--color-active);
+    box-sizing: border-box;
+}

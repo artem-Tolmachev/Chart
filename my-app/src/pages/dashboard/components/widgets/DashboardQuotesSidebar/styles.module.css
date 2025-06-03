@@ -1,0 +1,17 @@
+.DashboardQuotesSidebar {
+    padding: var(--padding-block);
+    width: 100%;
+    max-width: 500px;
+    background: var(--color-bg-panel);
+}
+.dashbord_right {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--border-block);
+    color: var(--color-text-primary);
+    box-sizing: border-box;
+    z-index: 2;
+}
+.header {
+    display: flex;
+}

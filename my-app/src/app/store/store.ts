@@ -1,9 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
+import { coinsApi } from 'pages/dashboard/coinData/services/getApiCoins';
+import { coins } from 'pages/dashboard/coinData/slices/CoinsSlice';
 import { TypedUseSelectorHook, useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux';
-import { coinsApi } from 'features/coins/services/getApiCoins';
-import { coins } from 'features/coins/slices/CoinsSlice';
+
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 

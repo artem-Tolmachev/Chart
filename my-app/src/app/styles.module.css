@@ -4,13 +4,10 @@
 html, body {
   margin: 0;
   padding: 0;
-  height: 100vh;
-  /* overflow: hidden; */
+  height: 100%;
 }
-
-/* .histogram{
-  height: 200px;
-} */
-/* canvas{
-  height: 745px !important;
-} */
+.main{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
